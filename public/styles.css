@@ -1,27 +1,25 @@
-/* Global Styles */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
-    background-color: #f4f4f4;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
+
 
 header {
     background-color: #333;
     color: white;
+    padding: 20px;
     text-align: center;
-    padding: 20px 0;
 }
 
-h1 {
-    margin: 0;
-    font-size: 2.5em;
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: 2px;
 }
 
-/* Navigation */
 nav {
-    background-color: #444;
+    background-color: #4CAF50;
     padding: 10px 0;
     text-align: center;
 }
@@ -29,86 +27,108 @@ nav {
 nav a {
     color: white;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     margin: 0 15px;
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 nav a:hover {
-    background-color: #555;
+    background-color: #333;
     border-radius: 5px;
 }
 
-/* Section Styles */
 section {
-    padding: 30px 20px;
-    margin: 20px auto;
-    max-width: 1000px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 20px;
+    margin: 20px 0;
 }
 
-h2 {
+#home {
+    background-color: #f4f4f4;
+}
+
+#home h2 {
     color: #333;
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2rem;
 }
 
-article p {
-    font-size: 1.1em;
+#home article p {
+    font-size: 1.2rem;
     color: #555;
-    margin-bottom: 20px;
 }
 
-ul {
+/* About Section */
+#about {
+    background-color: #f9f9f9;
+}
+
+#about h2 {
+    color: #333;
+    font-size: 2rem;
+}
+
+#about article p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+#services {
+    background-color: #e9f7f1;
+}
+
+#services h2 {
+    color: #333;
+    font-size: 2rem;
+}
+
+#services article ul {
     list-style-type: none;
     padding-left: 0;
 }
 
-ul li {
-    font-size: 1.1em;
-    margin: 10px 0;
-}
-
-/* Footer */
-footer {
-    background-color: #333;
+#services article ul li {
+    font-size: 1.2rem;
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #4CAF50;
     color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    border-radius: 5px;
 }
 
-footer p {
-    margin: 0;
-    font-size: 1em;
+#services article ul li:hover {
+    background-color: #333;
 }
 
-/* Link Styling */
-a {
-    color: #444;
+#contact {
+    background-color: #f4f4f4;
+}
+
+#contact h2 {
+    color: #333;
+    font-size: 2rem;
+}
+
+#contact article p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+#contact article a {
+    color: #4CAF50;
     text-decoration: none;
 }
 
-a:hover {
+#contact article a:hover {
     text-decoration: underline;
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-    nav a {
-        font-size: 1em;
-        padding: 10px;
-    }
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
 
-    section {
-        padding: 20px;
-    }
-
-    footer p {
-        font-size: 0.9em;
-    }
+footer p {
+    font-size: 1rem;
 }
