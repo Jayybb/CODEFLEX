@@ -1,26 +1,22 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
-  background-color: #f4f4f4;
-  padding: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-  background-color: #333;
+  background: #333;
   color: #fff;
-  padding: 10px 0;
+  padding: 10px 20px;
 }
 
 nav ul {
   display: flex;
   justify-content: center;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
@@ -28,62 +24,79 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-size: 16px;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 20px;
+  padding: 20px;
 }
 
-.item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
+.gallery .item {
+  overflow: hidden; 
 }
 
-.item img {
-  width: 100%;
-  height: 100%;
+.gallery .item img {
+  width: 100%; 
+  height: 200px; 
   object-fit: cover; 
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-}
-
-.item img:hover {
-  transform: scale(1.05); 
+  display: block;
 }
 
 section {
-  margin-top: 40px;
   padding: 20px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-section h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
+section#about,
+section#contact,
+section#location {
+  background: #f4f4f4;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .gallery {
-    grid-template-columns: repeat(2, 1fr); 
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  section {
+    padding: 15px;
   }
 }
 
 @media (max-width: 480px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .gallery {
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+
+  section {
+    padding: 10px;
+  }
+
+  header {
+    text-align: center;
+    padding: 15px;
+  }
+
+  header nav ul li a {
+    font-size: 1.1em;
   }
 }
 
