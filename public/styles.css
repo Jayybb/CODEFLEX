@@ -1,103 +1,48 @@
+/* Style for the body */
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-}
-
-header {
-  background: #333;
-  color: #fff;
-  padding: 10px 20px;
-}
-
-nav ul {
   display: flex;
   justify-content: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f8ff;
 }
 
-nav ul li {
-  margin: 0 15px;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 20px;
-}
-
-.gallery .item {
-  overflow: hidden; 
-}
-
-.gallery .item img {
-  width: 100%; 
-  height: 200px; 
-  object-fit: cover; 
-  display: block;
-}
-
+/* Style for the section */
 section {
+  text-align: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-section#about,
-section#contact,
-section#location {
-  background: #f4f4f4;
+/* Heading styles */
+h1 {
+  font-size: 2rem;
+  color: #333;
   margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  section {
-    padding: 15px;
-  }
+/* Button styles */
+button {
+  background-color: #007BFF;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-@media (max-width: 480px) {
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  nav ul li {
-    margin: 10px 0;
-  }
-
-  section {
-    padding: 10px;
-  }
-
-  header {
-    text-align: center;
-    padding: 15px;
-  }
-
-  header nav ul li a {
-    font-size: 1.1em;
-  }
+button:hover {
+  background-color: #0056b3;
 }
+
+
 
 
