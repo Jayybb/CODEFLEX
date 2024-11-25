@@ -1,24 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DOM Manipulation with CSS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Background Color</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            transition: background-color 1s ease;  
+        }
+        
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease; 
+        }
+        
+       
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-4px);  
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+      
+        button:active {
+            transform: translateY(2px);  
+        }
+
+       
+        #resetButton {
+            background-color: #ff6347;
+            margin-top: 15px;
+        }
+
+        #resetButton:hover {
+            background-color: #e0533b;
+        }
+
+       
+        #colorValue {
+            font-size: 20px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-  <h1 id="header">Welcome to My Website</h1>
-  <button id="changeColorBtn">Change Color</button>
+    <h1>Click the Button to Change the Background Color</h1>
+    <button id="changeColorButton">Change Background Color</button>
+    
+   
+    <button id="resetButton">Reset Background Color</button>
+    
+ 
+    <div id="colorValue"></div>
 
-  <script>
-    var header = document.getElementById("header");
-    var button = document.getElementById("changeColorBtn");
+    <script>
+       
+        const changeButton = document.getElementById('changeColorButton');
+        const resetButton = document.getElementById('resetButton');
+        const colorValueDisplay = document.getElementById('colorValue');
+        
+        let originalBackgroundColor = "#f0f0f0"; 
+        
+       
+        function getRandomColor() {
+            return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+        }
 
-    button.addEventListener("click", function() {
-      header.style.color = "gold";  
-      header.style.fontSize = "40px"; 
-      header.style.fontFamily = "Arial, sans-serif"; 
-      header.style.textAlign = "center"; 
-    });
-  </script>
+     
+        function changeBackgroundColor() {
+            const randomColor = getRandomColor();
+            document.body.style.backgroundColor = randomColor;
+            colorValueDisplay.textContent = `Current Background Color: ${randomColor}`;
+            
+            
+            changeButton.style.backgroundColor = getRandomColor();
+        }
+
+
+        function resetBackgroundColor() {
+            document.body.style.backgroundColor = originalBackgroundColor;
+            colorValueDisplay.textContent = `Current Background Color: ${originalBackgroundColor}`;
+            changeButton.style.backgroundColor = '#4CAF50';  
+        }
+
+        changeButton.addEventListener('click', changeBackgroundColor);
+        resetButton.addEventListener('click', resetBackgroundColor);
+    </script>
 </body>
 </html>
+
