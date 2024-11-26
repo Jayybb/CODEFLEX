@@ -1,115 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change Background Color</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            transition: background-color 1s ease;  
-        }
-        
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array and Loops Example</title>
+  <style>
+ 
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #121212;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
 
-        h1 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 20px;
-        }
-        
-        
-        button {
-            padding: 15px 25px;
-            font-size: 18px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease; 
-        }
-        
-       
-        button:hover {
-            background-color: #45a049;
-            transform: translateY(-4px);  
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-        }
+   
+    h1 {
+      font-size: 3rem;
+      color: #4CAF50; 
+      text-align: center;
+      text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
+      margin-bottom: 20px;
+      animation: neon 1.5s infinite alternate;
+    }
 
-      
-        button:active {
-            transform: translateY(2px);  
-        }
+    @keyframes neon {
+      0% {
+        text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
+      }
+      100% {
+        text-shadow: 0 0 20px #4CAF50, 0 0 30px #4CAF50, 0 0 40px #4CAF50;
+      }
+    }
+    #item-list {
+      max-width: 500px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
 
-       
-        #resetButton {
-            background-color: #ff6347;
-            margin-top: 15px;
-        }
+    .item {
+      font-size: 1.5rem;
+      color: white;
+      padding: 15px 20px;
+      margin: 8px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(255, 0, 204, 0.6);
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease-in-out;
+      animation: neonGlow 1.5s infinite alternate;
+    }
+    @keyframes neonGlow {
+      0% {
+        background-color: #4CAF50;
+        box-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
+      }
+      50% {
+        background-color: #ff007f; 
+        box-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
+      }
+      100% {
+        background-color: #00bfff; 
+        box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
+      }
+    }
 
-        #resetButton:hover {
-            background-color: #e0533b;
-        }
+    .item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 20px rgba(255, 0, 204, 0.8);
+      background-color: #ff1493; 
+    }
 
-       
-        #colorValue {
-            font-size: 20px;
-            margin-top: 20px;
-            color: #333;
-        }
-    </style>
+
+    #buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+   
+    button {
+      background-color: #00bfff; 
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 191, 255, 0.3);
+    }
+
+    button:hover {
+      background-color: #00c7b7;
+      transform: translateY(-3px);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .item {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 12px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Click the Button to Change the Background Color</h1>
-    <button id="changeColorButton">Change Background Color</button>
+  <h1>List of Fruits</h1>
+
+  <div id="item-list"></div>
+
+  <div id="buttons">
+    <button onclick="displayItemsWithForLoop()">Display with for loop</button>
+    <button onclick="displayItemsWithWhileLoop()">Display with while loop</button>
+  </div>
+
+  <script>
+    const items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+
+    const itemListContainer = document.getElementById("item-list");
+
+    function displayItemsWithForLoop() {
+      
+      itemListContainer.innerHTML = '';
+
+      for (let i = 0; i < items.length; i++) {
     
-   
-    <button id="resetButton">Reset Background Color</button>
-    
- 
-    <div id="colorValue"></div>
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("item");  
+        itemElement.textContent = items[i]; 
 
-    <script>
-       
-        const changeButton = document.getElementById('changeColorButton');
-        const resetButton = document.getElementById('resetButton');
-        const colorValueDisplay = document.getElementById('colorValue');
-        
-        let originalBackgroundColor = "#f0f0f0"; 
-        
-       
-        function getRandomColor() {
-            return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-        }
+        itemListContainer.appendChild(itemElement);
+      }
+    }
 
-     
-        function changeBackgroundColor() {
-            const randomColor = getRandomColor();
-            document.body.style.backgroundColor = randomColor;
-            colorValueDisplay.textContent = `Current Background Color: ${randomColor}`;
-            
-            
-            changeButton.style.backgroundColor = getRandomColor();
-        }
+    function displayItemsWithWhileLoop() {
+  
+      itemListContainer.innerHTML = '';
 
+      let i = 0;
+      while (i < items.length) {
+        const itemElement = document.createElement("div");
+        itemElement.classList.add("item"); 
+        itemElement.textContent = items[i]; 
+        itemListContainer.appendChild(itemElement);
+        i++;
+      }
+    }
+  </script>
 
-        function resetBackgroundColor() {
-            document.body.style.backgroundColor = originalBackgroundColor;
-            colorValueDisplay.textContent = `Current Background Color: ${originalBackgroundColor}`;
-            changeButton.style.backgroundColor = '#4CAF50';  
-        }
-
-        changeButton.addEventListener('click', changeBackgroundColor);
-        resetButton.addEventListener('click', resetBackgroundColor);
-    </script>
 </body>
 </html>
-
