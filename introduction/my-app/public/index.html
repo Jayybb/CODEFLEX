@@ -1,167 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Array and Loops Example</title>
-  <style>
- 
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #121212;
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy Student Information</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-   
-    h1 {
-      font-size: 3rem;
-      color: #4CAF50; 
-      text-align: center;
-      text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
-      margin-bottom: 20px;
-      animation: neon 1.5s infinite alternate;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #ec1b13, #00f2fe);
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-    @keyframes neon {
-      0% {
-        text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
-      }
-      100% {
-        text-shadow: 0 0 20px #4CAF50, 0 0 30px #4CAF50, 0 0 40px #4CAF50;
-      }
-    }
-    #item-list {
-      max-width: 500px;
-      width: 100%;
-      margin-bottom: 30px;
-    }
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        }
 
-    .item {
-      font-size: 1.5rem;
-      color: white;
-      padding: 15px 20px;
-      margin: 8px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(255, 0, 204, 0.6);
-      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease-in-out;
-      animation: neonGlow 1.5s infinite alternate;
-    }
-    @keyframes neonGlow {
-      0% {
-        background-color: #4CAF50;
-        box-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
-      }
-      50% {
-        background-color: #ff007f; 
-        box-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f, 0 0 30px #ff007f;
-      }
-      100% {
-        background-color: #00bfff; 
-        box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff, 0 0 30px #00bfff;
-      }
-    }
+        .output {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            margin: 10px 0;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-    .item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 20px rgba(255, 0, 204, 0.8);
-      background-color: #ff1493; 
-    }
+        .output:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
 
+        .output p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin: 10px 0;
+        }
 
-    #buttons {
-      display: flex;
-      gap: 20px;
-    }
+        .output strong {
+            color: #035de4;
+            font-weight: bold;
+        }
 
-   
-    button {
-      background-color: #00bfff; 
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-      box-shadow: 0 4px 6px rgba(0, 191, 255, 0.3);
-    }
+        #student-info {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 1.2rem;
+        }
 
-    button:hover {
-      background-color: #00c7b7;
-      transform: translateY(-3px);
-    }
+        #student-message {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 1.4rem;
+            color: #ffdd57;
+        }
+        #student-message {
+            animation: fadeIn 2s ease-out forwards;
+        }
 
-    button:active {
-      transform: translateY(1px);
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.5rem;
-      }
+        .status {
+            font-weight: bold;
+            color: #ff6347; 
+        }
 
-      .item {
-        font-size: 1.2rem;
-        padding: 10px 15px;
-      }
+        .status.enrolled {
+            color: #32cd32; 
+        }
 
-      button {
-        font-size: 1rem;
-        padding: 12px 20px;
-      }
-    }
-  </style>
+        .status.not-enrolled {
+            color: #ff6347; 
+        }
+    </style>
 </head>
 <body>
-  <h1>List of Fruits</h1>
 
-  <div id="item-list"></div>
+    <div>
+        <h1>Student Information</h1>
+        <div id="student-info" class="output"></div>
+        <div id="student-message" class="output"></div>
+    </div>
 
-  <div id="buttons">
-    <button onclick="displayItemsWithForLoop()">Display with for loop</button>
-    <button onclick="displayItemsWithWhileLoop()">Display with while loop</button>
-  </div>
+    <script>
+        const student = {
+            name: "John Doe",
+            age: 20,
+            grade: "A",
+            course: "Pharmaceutical Chemistry",
+            enrollmentStatus: "Enrolled", 
 
-  <script>
-    const items = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+            greet: function() {
+                return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+            },
 
-    const itemListContainer = document.getElementById("item-list");
+            updateGrade: function(newGrade) {
+                this.grade = newGrade;
+                return `New grade for ${this.name}: ${this.grade}`;
+            }
+        };
+        const studentName = student.name;
+        const studentAge = student.age;
+        const studentGrade = student.grade;
+        const studentCourse = student.course;
+        const studentEnrollmentStatus = student.enrollmentStatus;
 
-    function displayItemsWithForLoop() {
-      
-      itemListContainer.innerHTML = '';
+        const studentNameBracket = student["name"];
+        const studentAgeBracket = student["age"];
+        const studentGradeBracket = student["grade"];
+        const studentCourseBracket = student["course"];
+        const studentEnrollmentStatusBracket = student["enrollmentStatus"];
 
-      for (let i = 0; i < items.length; i++) {
-    
-        const itemElement = document.createElement("div");
-        itemElement.classList.add("item");  
-        itemElement.textContent = items[i]; 
+        const infoElement = document.getElementById('student-info');
+        infoElement.innerHTML = `
+            <p><strong>Name</strong>: ${studentName}</p>
+            <p><strong>Age</strong>: ${studentAge}</p>
+            <p><strong>Grade</strong>: ${studentGrade}</p>
+            <p><strong>Course</strong>: ${studentCourse}</p>
+            <p><strong>Enrollment Status</strong>: <span class="status ${studentEnrollmentStatus.toLowerCase()}">${studentEnrollmentStatus}</span></p>
+        `;
 
-        itemListContainer.appendChild(itemElement);
-      }
-    }
-
-    function displayItemsWithWhileLoop() {
-  
-      itemListContainer.innerHTML = '';
-
-      let i = 0;
-      while (i < items.length) {
-        const itemElement = document.createElement("div");
-        itemElement.classList.add("item"); 
-        itemElement.textContent = items[i]; 
-        itemListContainer.appendChild(itemElement);
-        i++;
-      }
-    }
-  </script>
+        const messageElement = document.getElementById('student-message');
+        messageElement.innerHTML = student.greet();
+        setTimeout(() => {
+            const updatedGradeMessage = student.updateGrade("A+");
+            messageElement.innerHTML = student.greet() + "<br>" + updatedGradeMessage;
+        }, 3000);
+    </script>
 
 </body>
 </html>
+
+
