@@ -3,213 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
+    <title>Dark/Light Mode Toggle</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f7fa;
+            background-color: #f0f0f0;
+            color: #333;
+            transition: background-color 0.5s, color 0.5s, box-shadow 0.5s;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            color: #333;
-        }
-
-        .form-container {
-            background: #fff;
-            width: 100%;
-            max-width: 350px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .form-container:hover {
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
             text-align: center;
-            font-size: 1.5rem; 
-            color: #4CAF50;
-            margin-bottom: 15px; 
         }
 
-        label {
-            display: block;
-            margin-bottom: 6px; 
-            font-weight: bold;
+        .content {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: #555;
-            font-size: 0.95rem;
         }
 
-        input, select, textarea {
-            width: 100%;
-            padding: 8px; 
-            margin-bottom: 12px; 
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+        .content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: #777;
         }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #4CAF50;
+        button {
+            background-color: #ff6363;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            font-weight: bold;
             outline: none;
         }
 
-        button {
-            width: 100%;
-            padding: 10px; 
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem; 
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
         button:hover {
-            background-color: #45a049;
+            background-color: #ff4c4c;
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .error {
-            color: red;
-            font-size: 0.85rem; 
-            margin-top: -8px; 
-            margin-bottom: 12px; 
+        body.dark-mode {
+            background-color: #222;
+            color: white;
         }
 
-        .form-container .form-group {
-            margin-bottom: 16px; 
+        .content.dark-mode {
+            background-color: #333;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
         }
 
-        .form-container .form-group textarea {
-            resize: vertical;
-            min-height: 100px; 
+        button.dark-mode {
+            background-color: #444;
+            color: white;
         }
 
-        #errorMessages {
-            margin-top: 15px;
-        }
-        .success {
-            color: green;
-            font-size: 0.95rem; 
-            text-align: center;
-            margin-top: 15px;
+        button.dark-mode:hover {
+            background-color: #555;
         }
     </style>
 </head>
 <body>
-
-    <div class="form-container">
-        <h2>Contact Us</h2>
-        <form id="contactForm">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <div class="form-group">
-                <label for="gender">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="birthdate">Date of Birth:</label>
-                <input type="date" id="birthdate" name="birthdate" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-            </div>
-
-            <button type="button" onclick="validateForm()">Submit</button>
-        </form>
-
-        <div id="errorMessages"></div>
-        <div id="successMessage" class="success"></div>
+    <div class="content">
+        <h1>Welcome to Dark/Light Mode Toggle</h1>
+        <p>Click the button below to switch between dark and light modes with a smooth transition.</p>
+        <button id="toggleBtn">Switch to Dark Mode</button>
     </div>
 
     <script>
-        function validateForm() {
-            
-            document.getElementById('errorMessages').innerHTML = '';
-            document.getElementById('successMessage').innerHTML = '';
+        const toggleButton = document.getElementById('toggleBtn');
+        const body = document.body;
 
-            
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var gender = document.getElementById('gender').value;
-            var birthdate = document.getElementById('birthdate').value;
-            var message = document.getElementById('message').value;
+        toggleButton.addEventListener('click', function() {
+           
+            body.classList.toggle('dark-mode');
+            toggleButton.classList.toggle('dark-mode');
+            document.querySelector('.content').classList.toggle('dark-mode');
 
-            if (name.trim() === '') {
-                displayError('Name is required.');
-                return false;
+            if (body.classList.contains('dark-mode')) {
+                toggleButton.textContent = 'Switch to Light Mode';
+            } else {
+                toggleButton.textContent = 'Switch to Dark Mode';
             }
-            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailPattern.test(email)) {
-                displayError('Please enter a valid email address.');
-                return false;
-            }
-            if (password.trim().length < 8) {
-                displayError('Password must be at least 8 characters long.');
-                return false;
-            }
-
-            if (gender === '') {
-                displayError('Please select your gender.');
-                return false;
-            }
-
-            if (birthdate === '') {
-                displayError('Please select your date of birth.');
-                return false;
-            }
-
-            if (message.trim().length < 10) {
-                displayError('Message must be at least 10 characters long.');
-                return false;
-            }
-
-            document.getElementById('successMessage').innerHTML = 'Form submitted successfully!';
-            return true;
-        }
-
-        function displayError(message) {
-            var errorDiv = document.getElementById('errorMessages');
-            var errorMessage = document.createElement('p');
-            errorMessage.classList.add('error');
-            errorMessage.textContent = message;
-            errorDiv.appendChild(errorMessage);
-        }
+        });
     </script>
-
 </body>
 </html>
-
