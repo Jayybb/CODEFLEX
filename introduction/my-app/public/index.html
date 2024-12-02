@@ -3,107 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark/Light Mode Toggle</title>
+    <title>To-Do List App</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            transition: background-color 0.5s, color 0.5s, box-shadow 0.5s;
-            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
             display: flex;
             justify-content: center;
             align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .todo-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            max-width: 100%;
+        }
+
+        h1 {
             text-align: center;
+            font-size: 24px;
         }
 
-        .content {
-            background: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            width: 90%;
-            max-width: 400px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
         }
-
-        .content h1 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .content p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #777;
-        }
-        button {
-            background-color: #ff6363;
-            color: white;
-            font-size: 1.1rem;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-            font-weight: bold;
+        input[type="text"]:focus {
+            border-color: #0709a5;
             outline: none;
         }
 
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         button:hover {
-            background-color: #ff4c4c;
-            transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            background-color: #45a049;
         }
 
-        body.dark-mode {
-            background-color: #222;
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        li span {
+            flex-grow: 1;
+        }
+        li.completed span {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        button.delete-btn {
+            background-color: #36def496;
             color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
         }
 
-        .content.dark-mode {
-            background-color: #333;
-            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+        button.delete-btn:hover {
+            background-color: #dd2320;
         }
-
-        button.dark-mode {
-            background-color: #444;
+        button#clear-all-btn {
+            background-color: #ff0000c5;
             color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
         }
 
-        button.dark-mode:hover {
-            background-color: #555;
+        button#clear-all-btn:hover {
+            background-color: #f500ccc5;
+        }
+        @media (max-width: 600px) {
+            .todo-container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            input[type="text"],
+            button {
+                font-size: 14px;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>Welcome to Dark/Light Mode Toggle</h1>
-        <p>Click the button below to switch between dark and light modes with a smooth transition.</p>
-        <button id="toggleBtn">Switch to Dark Mode</button>
+    <div class="todo-container">
+        <h1>To-Do List</h1>
+        <input type="text" id="task-input" placeholder="Enter a new task" />
+        <button id="add-task-btn">Add Task</button>
+        <ul id="task-list"></ul>
+        <button id="clear-all-btn">Clear All</button>
     </div>
 
     <script>
-        const toggleButton = document.getElementById('toggleBtn');
-        const body = document.body;
+        const taskInput = document.getElementById("task-input");
+        const addTaskBtn = document.getElementById("add-task-btn");
+        const taskList = document.getElementById("task-list");
+        const clearAllBtn = document.getElementById("clear-all-btn");
 
-        toggleButton.addEventListener('click', function() {
-           
-            body.classList.toggle('dark-mode');
-            toggleButton.classList.toggle('dark-mode');
-            document.querySelector('.content').classList.toggle('dark-mode');
+        function addTask() {
+            const taskText = taskInput.value.trim();
 
-            if (body.classList.contains('dark-mode')) {
-                toggleButton.textContent = 'Switch to Light Mode';
-            } else {
-                toggleButton.textContent = 'Switch to Dark Mode';
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
             }
+
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${taskText}</span>
+                <button class="delete-btn">Delete</button>
+            `;
+
+            li.querySelector("span").addEventListener("click", () => {
+                li.classList.toggle("completed");
+            });
+            const deleteBtn = li.querySelector(".delete-btn");
+            deleteBtn.addEventListener("click", () => {
+                li.remove(); 
+            });
+            taskList.appendChild(li);
+            taskInput.value = "";
+        }
+        addTaskBtn.addEventListener("click", addTask);
+        taskInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                addTask();
+            }
+        });
+        clearAllBtn.addEventListener("click", () => {
+            taskList.innerHTML = ""; 
         });
     </script>
 </body>
